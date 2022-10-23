@@ -10,6 +10,7 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './create-post.dto';
 import { identity } from 'rxjs';
+
 @Controller('posts')
 export class PostsController {
   constructor(private postService: PostsService) {}

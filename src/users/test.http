@@ -1,0 +1,20 @@
+More http symtax: https://www.jetbrains.com/help/idea/exploring-http-syntax.html
+###Required for multi-request in single file.
+
+http://localhost:3000/users/all
+
+### OR:
+curl http://localhost:3000/users/all
+
+
+### GET (can omit GET)
+http://localhost:3000/users/1
+
+###
+GET  http://localhost:3000/users/1
+
+
+### POST
+POST http://localhost:3000/user/createUser
+
+{ "key" : "value", "list": [1, 2, 3] }
