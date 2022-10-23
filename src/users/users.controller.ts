@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
-@Controller('users')
+@Controller('users') //pre
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
@@ -12,7 +12,7 @@ export class UsersController {
     return users;
   }
 
-  @Get(':userId') //Catch userId trong url // localhost:3000/users/1
+  @Get(':userId') // userId trong url // localhost:3000/users/1
   async getUser(@Param('userId') id) {
     return await this.usersService.getUser(id);
   }
@@ -21,6 +21,7 @@ export class UsersController {
   async createUser(@Body() user: User) {
     console.log(user);
     const result = await this.usersService.createUser(user).catch((err) => {
+      console.log(err);
       return err;
     });
 
@@ -42,13 +43,18 @@ export class UsersController {
 
   @Delete(':userId')
   async deleteUser(@Param('userId') id) {
-    return await this.usersService.remove(id);
+    await this.usersService.remove(id).catch((err) => {
+      console.log(err);
+      return 'failed';
+    });
+    return 'success';
   }
 
   @Post('updateUser')
   async updateUser(@Body() user: User) {
-    return await this.usersService.updateUser(user).catch((err) => {
-      return err;
+    await this.usersService.updateUser(user).catch((err) => {
+      console.log(err);
+      return 'failed';
     });
   }
 }

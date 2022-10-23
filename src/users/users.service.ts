@@ -40,6 +40,7 @@ export class UsersService {
   }
 
   createUser(user) {
+    // const user= this.usersRepository.findOneBy({ user.id }).catch;
     return this.usersRepository.insert(user);
     // return this.usersRepository.create(user);
   }
