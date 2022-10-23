@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // app.enableCors(); //if not have postman Agent
+  app.enableCors(); //bypass CORS for Postman
   await app.listen(3000);
 }
 bootstrap();
